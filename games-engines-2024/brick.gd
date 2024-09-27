@@ -15,4 +15,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var mat = get_active_material(0)
+	mat.albedo_color = Color(rng.randi_range(19,200),rng.randi_range(0,200),rng.randi_range(0,200))
 	pass
