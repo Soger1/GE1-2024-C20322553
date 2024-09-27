@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4xqistc0pr7m"]
+
+[ext_resource type="Material" uid="uid://cbwbseqyajxy5" path="res://grey.tres" id="1_5yg5w"]
+[ext_resource type="Script" path="res://brick.gd" id="2_1sdxa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_43eee"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="brick" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_43eee")
+surface_material_override/0 = ExtResource("1_5yg5w")
+script = ExtResource("2_1sdxa")

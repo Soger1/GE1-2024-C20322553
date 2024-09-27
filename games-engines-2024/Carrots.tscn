@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnklmm5p1pny3"]
+[gd_scene load_steps=11 format=3 uid="uid://dnklmm5p1pny3"]
 
 [ext_resource type="Material" uid="uid://c0awkcg67ylm4" path="res://green.tres" id="1_ttydp"]
 [ext_resource type="Material" uid="uid://c754t3p53cj7w" path="res://blue.tres" id="2_ynj5q"]
+[ext_resource type="Script" path="res://player.gd" id="3_cyqgr"]
+[ext_resource type="Material" uid="uid://cbwbseqyajxy5" path="res://grey.tres" id="4_s1thw"]
+[ext_resource type="Script" path="res://wall.gd" id="5_o4l75"]
+[ext_resource type="PackedScene" uid="uid://b4xqistc0pr7m" path="res://bricks.tscn" id="6_p5hf6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ku46t"]
 size = Vector2(100, 100)
@@ -10,6 +14,11 @@ size = Vector2(100, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rmon5"]
 size = Vector3(0.2, 0.2, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i5avu"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.1
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0126361, 0)
@@ -22,12 +31,26 @@ surface_material_override/0 = ExtResource("1_ttydp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.712963, 0)
 material_override = ExtResource("2_ynj5q")
 mesh = SubResource("BoxMesh_g16pf")
+script = ExtResource("3_cyqgr")
 
 [node name="turret" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.346385, -0.566516)
-material_override = ExtResource("2_ynj5q")
+material_override = ExtResource("4_s1thw")
 mesh = SubResource("BoxMesh_rmon5")
 skeleton = NodePath("../..")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.977131, 0.212638, 0, -0.212638, 0.977131, 0, 2.24584, 2.81826)
+[node name="Player_Camera" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.977131, 0.212638, 0, -0.212638, 0.977131, 0, 1.53288, 2.81826)
+
+[node name="hatch" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165566, 0.452512, 0.201782)
+material_override = ExtResource("4_s1thw")
+mesh = SubResource("CylinderMesh_i5avu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.99797, -0.00665182, 0.0633305, -0.0631224, -0.234525, 0.970059, 0.00839991, -0.972087, -0.234469, 0, 2.78311, 0)
+
+[node name="wall" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.538646, -14.1221)
+script = ExtResource("5_o4l75")
+brick_scene = ExtResource("6_p5hf6")

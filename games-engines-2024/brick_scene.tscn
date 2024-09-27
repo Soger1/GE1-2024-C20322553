@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bslu3rdx6263a"]
+
+[ext_resource type="Material" uid="uid://cbwbseqyajxy5" path="res://grey.tres" id="1_mgweu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_43eee"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_43eee")
+surface_material_override/0 = ExtResource("1_mgweu")
