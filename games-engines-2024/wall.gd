@@ -3,7 +3,7 @@ extends Node3D
 @export var brick_scene: PackedScene
 
 @export var row = 10
-@export var col = 15
+@export var col = 250
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,8 +12,10 @@ func _ready() -> void:
 	for row in range(row):
 		for col in range(col):
 			var brick = brick_scene.instantiate()
-			var pos = Vector3(col, row, 0)
+			var pos = Vector3(cos(col)*PI, row, sin(col)*PI)
 			brick.position = pos
+			
+			
 			add_child(brick)
 			
 	pass # Replace with function body.

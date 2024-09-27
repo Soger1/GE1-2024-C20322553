@@ -51,6 +51,6 @@ mesh = SubResource("CylinderMesh_i5avu")
 transform = Transform3D(0.99797, -0.00665182, 0.0633305, -0.0631224, -0.234525, 0.970059, 0.00839991, -0.972087, -0.234469, 0, 2.78311, 0)
 
 [node name="wall" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.538646, -14.1221)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.261261, -0.165622, -12.933)
 script = ExtResource("5_o4l75")
 brick_scene = ExtResource("6_p5hf6")
