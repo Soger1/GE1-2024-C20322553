@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2cnv7v7huh3k"]
+[gd_scene load_steps=14 format=3 uid="uid://d2cnv7v7huh3k"]
 
 [ext_resource type="Script" path="res://scenes/TPCamera.gd" id="1_3bv4w"]
 [ext_resource type="Material" uid="uid://dvo75cymypytd" path="res://green.tres" id="1_ljfv3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/player.gd" id="3_1hidi"]
 [ext_resource type="Script" path="res://scenes/wall.gd" id="4_x4eqr"]
 [ext_resource type="PackedScene" uid="uid://buu3aq61omx1k" path="res://brick.tscn" id="5_nw2f7"]
+[ext_resource type="PackedScene" uid="uid://unjc4gb41tjq" path="res://weapon.tscn" id="6_wkciu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_00q4b"]
 size = Vector2(100, 100)
@@ -15,6 +16,11 @@ size = Vector2(100, 100)
 [sub_resource type="BoxMesh" id="BoxMesh_dedr2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x3dj0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_51bgx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_344ah"]
+size = Vector3(1, 1, 0.611816)
 
 [node name="root" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.175501, -0.181799, 0.209049)
@@ -45,9 +51,11 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0179048, 0.0159935, -0.0457904)
 shape = SubResource("WorldBoundaryShape3D_rryhr")
 
-[node name="player" type="CharacterBody3D" parent="."]
+[node name="player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("bullet_spawn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("3_1hidi")
+bullet_scene = ExtResource("6_wkciu")
+bullet_spawn = NodePath("Marker3D2")
 
 [node name="player" type="MeshInstance3D" parent="player"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0)
@@ -59,6 +67,20 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_x3dj0")
 
 [node name="Marker3D" type="Marker3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338285, 3.35701)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54557, 3.35701)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.03668, 0, 0.200948, -0.376938)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player/StaticBody3D"]
+transform = Transform3D(0.256653, 0, 0, 0, 0.168192, 0, 0, 0, 1, 0, 0.367339, -0.58563)
+mesh = SubResource("BoxMesh_51bgx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player/StaticBody3D"]
+transform = Transform3D(0.262103, 0, 0, 0, 0.27042, 0, 0, 0, 1, 0, 0.34133, -0.815408)
+shape = SubResource("BoxShape3D_344ah")
+
+[node name="Marker3D2" type="Marker3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.360578, -2.50522)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

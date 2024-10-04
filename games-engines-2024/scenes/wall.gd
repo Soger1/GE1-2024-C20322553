@@ -1,8 +1,8 @@
 extends Node3D
 
 @export var brick_scene:PackedScene
-@export var rows = 10
-@export var cols = 10
+@export var rows = 100
+@export var cols = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
